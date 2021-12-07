@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="carousel">
+        <button class="carousel_button carousel_button--left">Previous</button>
+        
+        <div class="carousel_track-container">
+            <ul class="carousel_track">
+                <li class="carousel_slide current-slide">
+                    <img class="carousel_image" src="./images/image-1.jpg" />
+                </li>
+                <li class="carousel_slide">
+                    <img class="carousel_image" src="./images/image-2.PNG" />
+                </li>
+                <li class="carousel_slide">
+                    <img class="carousel_image" src="./images/image-3.png" />
+                </li>
+            </ul>
+        </div>
+        <button class="carousel_button carousel_button--right">Next</button>
+
+        <div class="carousel_nav">
+            <button class="carousel_indicator"></button>
+            <button class="carousel_indicator"></button>
+            <button class="carousel_indicator"></button>
+
+        </div>
+    </div>
+
+
+    <style>
+        .carousel{
+            position: relative;
+            height: 600px;
+            width:80%;
+            margin:  0 auto;
+        }
+
+        .carousel_image{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel_track-container{
+            background: lightgreen;
+           
+            height: 100%;
+            position: relative
+
+        }
+
+        .carousel_track{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .carousel_slide{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%
+        }
+
+        .carousel_button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background:transparent;
+            border: 0;
+            color:tomato;
+        }
+
+        .carousel_button--left{
+            left: -40px;
+        }
+        .carousel_button--right{
+            left: -40px;
+        }
+
+        .carousel_button img{
+            width: 12px;
+        }
+
+        .carousel_nav{
+            background: pink;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        
+        .carousel_indicator{
+            border: 0;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            margin: 0 12px;
+        }
+
+    </style>
+
+    <script>
+        const track = document.querySelector('.carousel_track')
+        const slides = Array.from(track.children)
+        
+        const nextButton = document.querySelector('.carousel_button--right')
+        const prevButton = document.querySelector('.carousel_button--left')
+        const dotsNav = document.querySelector('carousel_nav');
+        const dots = Array.from(dotsNav.children)
+
+        const slideSize = slides[0].getBoundingClientRect().width;
+
+        const setSlidePosition = (slide, index) =>{
+            slide.style.left = slideWidth * index + 'px'
+        }
+        slides.forEach(setSlidePosition);
+
+        nextButton.addEventListener('click', e =>{
+            const currentSlide = track.querySelector('.current-slide')
+            console.log(currentSlide)
+        })
+        
+    </script>
+</body>
+</html>
